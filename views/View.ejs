@@ -1,0 +1,81 @@
+<html>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<meta charset="utf-8">
+	<title><%= resName %></title>
+	<style>
+	  /* Always set the map height explicitly to define the size of the div
+	   * element that contains the map. */
+	  #map {
+		height: 100%;
+	  }
+	  /* Optional: Makes the sample page fill the window. */
+	  html, body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	  }
+	</style>
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+</head>
+<body>
+	<script>
+		function goBack() {window.history.back();}
+	</script>
+	<div class="w3-container w3-teal">
+	  <h1 align="center" style="font-family: cursive, Lucida"><%= resName %></h1>
+	</div>
+		<% if (currentUser == ""){ %>
+			<p>Not Login
+			<a href="/loginPage" style="text-decoration: none">
+				<button class="w3-btn w3-section w3-teal w3-ripple">Login</button>
+			</a></p>
+		<%}else{%>
+			<p>Login as <%= currentUser %>
+			<a href="/logout" style="text-decoration: none">
+				<button class="w3-btn w3-section w3-teal w3-ripple">Logout</button>
+			</a></p>
+		<% }%>
+	<% if (resPhone != []){%>
+	<img id ="restImage" src="<%= resPhoto%>" class="w3-image w3-border w3-padding" style="width:50%; margin: 30px 250px">
+	<% }%>
+	<div class="w3-container">
+		<p><label class="w3-label w3-validate">Borough: </label><%= resBorough %></p>
+		<p><label class="w3-label w3-validate">Cuisine: </label><%= resCuisine %></p>
+		<p><label class="w3-label w3-validate">Street: </label><%= resStreet %></p>
+		<p><label class="w3-label w3-validate">Building: </label><%= resBuilding %></p>
+		<p><label class="w3-label w3-validate">Coord: </label><%= resCoord %><br/>
+		<a href="/displayRestaurantMap/<%= resID %>" style="text-decoration: none">
+			<button class="w3-btn w3-section w3-teal w3-ripple">View On Google Map</button>
+		</a>
+
+		<p><label class="w3-label w3-validate">Created by: </label><%= resOwner %></p>
+
+		<p><label class="w3-label w3-validate">Rating: </label></p>
+			<ul>
+				<% grades.forEach(function(grade) { %>
+					<li><%= grade.rateUser %> : <%= grade.score %>  (<%= grade.rateDate %>)</li>
+				<% }); %>
+			</ul>
+		</p>
+	</div>
+	
+	<div class="w3-container">
+		<% if (allowRate == 1){ %>
+		<a href="/showRatingPage/<%= resID %>" style="text-decoration: none">
+			<button class="w3-btn w3-section w3-teal w3-ripple">Rate This Restaurant</button>
+		</a>
+		<% } %>
+		<% if (allowEdit == 1){ %>
+		<a href="/showModifyRestaurantInfoPage/<%= resID %>" style="text-decoration: none">
+			<button class="w3-btn w3-section w3-teal w3-ripple">Edit</button>
+		</a>
+		<a href="/deleteRestaurant/<%= resID %>" style="text-decoration: none">
+		  <button class="w3-btn w3-section w3-teal w3-ripple">Delete</button>
+		</a>
+		<% } %>
+	</div>
+		<button class="w3-btn w3-section w3-teal w3-ripple" onclick="goBack()">Go Back</button>
+<a href='/showAllRestaurant'><button class="w3-btn w3-section w3-teal w3-ripple" >HomePage</button></a>
+</body>
+</html>

@@ -1,0 +1,47 @@
+
+<html>
+<title>Create Account</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<body>
+
+<header class="w3-container w3-teal">
+  <h1 align="center" style="font-family: cursive, Lucida">Create Account</h1>
+</header>
+
+<div class="w3-container w3-half w3-margin-top" style="margin-left:25%">
+
+<form action="/createAccount" method="post" class="w3-container w3-card-4" style="border-radius: 10px">
+  <p>
+  <label class="w3-label w3-validate">New User Name</label>
+  <input name="username" class="w3-input" type="text" style="width:90%" required>
+  </p>
+  
+  <p>
+  <label class="w3-label w3-validate">New User Password</label>
+  <input name="password"class="w3-input" type="password" style="width:90%" >
+  </p>
+	<input type='submit' class="w3-btn w3-section w3-teal w3-ripple" value='Create' />
+</form>
+</div>
+	<script>
+		function goBack() {window.history.back();}
+	</script>
+		<button class="w3-btn w3-section w3-teal w3-ripple" onclick="goBack()">Go Back</button>
+<a href='/showAllRestaurant'><button class="w3-btn w3-section w3-teal w3-ripple" >HomePage</button></a>
+
+</body>
+</html>
+
+<!--
+<html>
+<body>
+<form action="/processlogin" method="get">
+User ID: <input type="text" name="id" />
+Password: <input type="password" name="password" />
+<br><br>
+<input type="submit" value="Login">
+</form>
+</body>
+</html>
+-->

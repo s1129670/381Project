@@ -1,0 +1,58 @@
+<html>
+	<head>
+	  <title>Restaurant List</title>
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+	</head>
+	<body>
+	<header class="w3-container w3-teal">
+	  <h1 align="center" style="font-family: cursive, Lucida">Restaurants List</h1>
+	</header>
+		<% if (currentUser == ""){ %>
+			<p>Not Login
+			<a href="/loginPage" style="text-decoration: none">
+				<button class="w3-btn w3-section w3-teal w3-ripple">Login</button>
+			</a></p>
+		<%}else{%>
+			<p>Login as <%= currentUser %>
+			<a href="/logout" style="text-decoration: none">
+				<button class="w3-btn w3-section w3-teal w3-ripple">Logout</button>
+			</a></p>
+		<% }%>
+		
+	<div class="w3-container">
+			<% if (JSON.stringify(criteria) == "{}"){ %>
+				<p>Shoing All Restaurant Record.
+				<a href="/showSearchRestaurantPage" style="text-decoration: none">
+					<button class="w3-btn">Search Restaurant</button>
+				</a></p>
+			<%}else{%>
+				<p>Searching criteria : <%=JSON.stringify(criteria)%><a href="/showSearchRestaurantPage" style="text-decoration: none">
+					<button class="w3-btn">Search Restaurant</button>
+				</a</p>
+			<% }%>
+			<% if (currentUser != ""){ %>
+				<a href="/showCreateRestaurantPage" style="text-decoration: none">
+					<button class="w3-btn">Create New Restaurant Record</button>
+				</a>
+			<% } %>
+	</div>
+	<br>
+	<div class="w3-container">
+	 <ul class="w3-ul w3-large">
+		<% if (JSON.stringify(results) == "[]"){%>
+			<p>No Restaurant Record found.</p>
+		<% }else{%>
+			<% for (i = 0; i < results.length; i++){ %>
+			<li><a href='/showRestaurantInfo/<%= results[i].restaurant_id%>'><%= results[i].name %></a></li>
+		<% }}%>
+	  </ul>
+	</div>
+	<script>
+		function goBack() {window.history.back();}
+	</script>
+		<button class="w3-btn w3-section w3-teal w3-ripple" onclick="goBack()">Go Back</button>
+<a href='/showAllRestaurant'><button class="w3-btn w3-section w3-teal w3-ripple" >HomePage</button></a>
+	<p>
+	</body>
+</html>
