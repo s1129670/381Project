@@ -144,15 +144,6 @@ app.get('/logout',function(req,res) {
 });
 
 app.post('/api/create', function(req,res) {
-	var a = req.session;
-	if (JSON.stringify(a) == '{}'){
-		var errObject = errorObject;
-		errObject.msg = 'Auth. Fail';
-		errObject.code = 1;
-		res.writeHead(404, {'Content-type' : 'application/JSON'});
-		res.end(JSON.stringify(errObject));
-		errObject = null;
-	}else{
 		if ((req.body.name == null) || (req.body.name == ' ')){
 			var msg = 'Required Name fields missing!';
 		}else if ((req.body.borough == null) || (req.body.borough == ' ')){
@@ -239,7 +230,7 @@ app.post('/api/create', function(req,res) {
 				);
 			});
 		}
-	}
+	
 
 });
 app.get('/showCreateRestaurantPage', function(req,res){
