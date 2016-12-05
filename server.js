@@ -182,7 +182,7 @@ app.post('/api/create', function(req,res) {
 			r['cuisine'] = (queryAsObject.cuisine != null) ? queryAsObject.cuisine : null;
 			r['name'] = (queryAsObject.name != null) ? queryAsObject.name : null;
 			r['restaurant_id'] = (queryAsObject.restaurant_id != null) ? queryAsObject.restaurant_id : null;
-			r['restaurant_owner'] = req.session.username;
+			r['restaurant_owner'] = queryAsObject.username;
 			if (req.files) {
 				r['photoUploaded'] = 1;
 				r['photoData'] = new Buffer(req.files.uploadFile.data).toString('base64');
