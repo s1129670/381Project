@@ -253,6 +253,10 @@ app.post('/createRestaurant', function(req,res) {
 			var msg = 'Required Borough fields missing!';
 		}else if ((req.body.cuisine == null) || (req.body.cuisine.length == 0)){
 			var msg = 'Required Cuisine fields missing!';
+		}else if (req.files){
+			if (req.files.uploadFile.mimetype != 'image/jpeg'){
+				var msg = 'Not supported photo uploaded!';
+			}
 		}
 		if (msg != null){
 			var errObject = errorObject;
